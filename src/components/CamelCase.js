@@ -4,21 +4,33 @@ function CamelCase() {
   const [text, setText] = useState('')
   const [camelCase, setCamelCase] = useState('')
   const [kebabCase, setKebabCase] = useState('')
-  function handleTextChange(e) {
+  const [titleCase, setTitleCase] = useState('')
+  const [snakeCase, setSnakeCase] = useState('')
+
+  const handleTextChange = (e) => {
     setText(e.target.value)
     setCamelCase(toCamelCase(e.target.value))
     setKebabCase(toKebabCase(e.target.value))
+    setTitleCase(toTitleCase(e.target.value))
+    setSnakeCase(toSnakeCase(e.target.value))
   }
-  function handleCamelCaseChange(e) {
+
+  const handleCamelCaseChange = (e) => {
     setCamelCase(e.target.value)
   }
-  function handleKebabCaseChange(e) {
+  const handleKebabCaseChange = (e) => {
     setKebabCase(e.target.value)
+  }
+  const handleTitleCaseChange = (e) => {
+    setTitleCase(e.target.value)
+  }
+  const handleSnakeCaseChange = (e) => {
+    setSnakeCase(e.target.value)
   }
 
   function toCamelCase(str) {
     let ans = ''
-    str.split(' ').forEach(function (element, index) {
+    str.split(' ').forEach((element, index) => {
       if (element.length > 0) {
         let item = element.toLowerCase()
         ans += index === 0 ? item : item[0].toUpperCase() + item.slice(1)
@@ -30,8 +42,32 @@ function CamelCase() {
   function toKebabCase(str) {
     let ans = ''
     str.split(' ').forEach((element, index) => {
-      let item = element.toLowerCase()
-      ans += index === 0 ? item : '-' + item
+      if (element.length > 0) {
+        let item = element.toLowerCase()
+        ans += index === 0 ? item : '-' + item
+      }
+    })
+    return ans
+  }
+
+  function toTitleCase(str) {
+    let ans = ''
+    str.split(' ').forEach((element, index) => {
+      if (element.length > 0) {
+        let item = element[0].toUpperCase() + element.slice(1).toLowerCase()
+        ans += index === 0 ? item : ' ' + item
+      }
+    })
+    return ans
+  }
+
+  function toSnakeCase(str) {
+    let ans = ''
+    str.split(' ').forEach((element, index) => {
+      if (element.length > 0) {
+        let item = element[0].toUpperCase() + element.slice(1).toLowerCase()
+        ans += index === 0 ? item : '_' + item
+      }
     })
     return ans
   }
@@ -40,15 +76,23 @@ function CamelCase() {
     <div className="card">
       <div className="item">
         Text:
-        <input onChange={handleTextChange} value={text}></input>
+        <input onChange={handleTextChange} value={text} placeholder="input here"></input>
       </div>
       <div className="item">
         camelCase:
-        <input onChange={handleCamelCaseChange} value={camelCase}></input>
+        <input onChange={handleCamelCaseChange} value={camelCase} placeholder="inputHere"></input>
       </div>
       <div className="item">
         kebab-case:
-        <input onChange={handleKebabCaseChange} value={kebabCase}></input>
+        <input onChange={handleKebabCaseChange} value={kebabCase} placeholder="input-here"></input>
+      </div>
+      <div className="item">
+        Title Case:
+        <input onChange={handleTitleCaseChange} value={titleCase} placeholder="Input Here"></input>
+      </div>
+      <div className="item">
+        Snake_Case:
+        <input onChange={handleSnakeCaseChange} value={snakeCase} placeholder="Input_Here"></input>
       </div>
     </div>
   )
