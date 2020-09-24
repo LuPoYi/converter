@@ -1,69 +1,49 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react'
+const MeasurementUnit = () => {
+  const cmInchRatio = 0.3937
+  const kgPoundRatio = 2.2046226218
 
+  const [cm, setCm] = useState(1)
+  const [inch, setInch] = useState(0.3937)
+  const [kg, setKg] = useState(1)
+  const [pound, setPound] = useState(2.2046226218)
 
-class MeasurementUnit extends Component {
-  cmInchRatio = 0.3937
-  kgPoundRatio = 2.2046226218
-
-  constructor() {
-    super()
-    this.state = {
-      cmInput: 1,
-      inchInput: 0.3937,
-      kgInput: 1,
-      poundInput: 2.2046226218,
-
-    }
-    this.cmHandleChange = this.cmHandleChange.bind(this)
-    this.inchHandleChange = this.inchHandleChange.bind(this)
-    this.kgHandleChange = this.kgHandleChange.bind(this)
-    this.poundHandleChange = this.poundHandleChange.bind(this)
+  const cmHandleChange = (e) => {
+    setCm(e.target.value)
+    setInch((e.target.value * cmInchRatio).toFixed(4))
   }
 
-  cmHandleChange(event) {
-    this.setState({
-      kgInput: event.target.value,
-      poundInput: (event.target.value * this.cmInchRatio).toFixed(4)
-    })
-  }
-  inchHandleChange(event) {
-    this.setState({
-      kgInput: (event.target.value / this.cmInchRatio).toFixed(4),
-      poundInput: event.target.value
-    })
-  }
-  kgHandleChange(event) {
-    this.setState({
-      kgInput: event.target.value,
-      poundInput: (event.target.value * this.kgPoundRatio).toFixed(4)
-    })
-  }
-  poundHandleChange(event) {
-    this.setState({
-      kgInput: (event.target.value / this.kgPoundRatio).toFixed(4),
-      poundInput: event.target.value
-    })
+  const inchHandleChange = (e) => {
+    setInch(e.target.value)
+    setCm((e.target.value / cmInchRatio).toFixed(4))
   }
 
-
-  render() {
-    return (
-      <div className="card">
-        <div className="item">
-          cm: <input onChange={this.cmHandleChange} value={this.state.cmInput}></input>
-        </div>
-        <div className="item">
-          inch: <input onChange={this.inchHandleChange} value={this.state.inchInput}></input>
-        </div>
-        <div className="item">
-          kg: <input onChange={this.kgHandleChange} value={this.state.kgInput}></input>
-        </div>
-        <div className="item">
-          pound: <input onChange={this.poundHandleChange} value={this.state.poundInput}></input>
-        </div>
-      </div >
-    )
+  const kgHandleChange = (e) => {
+    setKg(e.target.value)
+    setPound((e.target.value * kgPoundRatio).toFixed(4))
   }
+
+  const poundHandleChange = (e) => {
+    setPound(e.target.value)
+    setKg((e.target.value / kgPoundRatio).toFixed(4))
+  }
+
+  return (
+    <div className="card">
+      <div className="item">
+        cm: <input onChange={cmHandleChange} value={cm}></input>
+      </div>
+      <div className="item">
+        inch: <input onChange={inchHandleChange} value={inch}></input>
+      </div>
+      <div className="item">
+        kg: <input onChange={kgHandleChange} value={kg}></input>
+      </div>
+      <div className="item">
+        pound: <input onChange={poundHandleChange} value={pound}></input>
+      </div>
+    </div>
+  )
 }
 
 export default MeasurementUnit
