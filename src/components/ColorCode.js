@@ -1,76 +1,116 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react'
 
-class ColorCode extends Component {
-  constructor() {
-    super()
-    this.state = {
-      rInput: 0,
-      gInput: 0,
-      bInput: 0,
-      hexInput: "#000000",
+const ColorCode = () => {
+  const [red, setRed] = useState(0)
+  const [green, setGreen] = useState(0)
+  const [blue, setBlue] = useState(0)
+  const [hex, setHex] = useState('#000000')
+
+  const handleRedChange = (e) => {
+    let value = e.target.value
+    if (value.toString().length === 0) {
+      setRed('')
+      setHex('ERROR')
+    } else if (value >= 0 && value <= 255) {
+      setRed(parseInt(value))
+
+      let r = parseInt(value).toString(16)
+      let g = parseInt(green).toString(16)
+      let b = parseInt(blue).toString(16)
+
+      if (r.length === 1) {
+        r = '0' + r
+      }
+      if (g.length === 1) {
+        g = '0' + g
+      }
+      if (r.length === 1) {
+        b = '0' + b
+      }
+      setHex('#' + r + g + b)
     }
-    this.rHandleChange = this.rHandleChange.bind(this)
-    this.gHandleChange = this.gHandleChange.bind(this)
-    this.bHandleChange = this.bHandleChange.bind(this)
-    this.hexHandleChange = this.hexHandleChange.bind(this)
+  }
+  const handleGreenChange = (e) => {
+    let value = e.target.value
+    if (value.toString().length === 0) {
+      setGreen('')
+      setHex('ERROR')
+    } else if (value >= 0 && value <= 255) {
+      setGreen(parseInt(value))
+
+      let r = parseInt(red).toString(16)
+      let g = parseInt(value).toString(16)
+      let b = parseInt(blue).toString(16)
+
+      if (r.length === 1) {
+        r = '0' + r
+      }
+      if (g.length === 1) {
+        g = '0' + g
+      }
+      if (r.length === 1) {
+        b = '0' + b
+      }
+      setHex('#' + r + g + b)
+    }
+  }
+  const handleBlueChange = (e) => {
+    let value = e.target.value
+    if (value.toString().length === 0) {
+      setBlue('')
+      setHex('ERROR')
+    } else if (value >= 0 && value <= 255) {
+      setBlue(parseInt(value))
+
+      let r = parseInt(red).toString(16)
+      let g = parseInt(green).toString(16)
+      let b = parseInt(value).toString(16)
+
+      if (r.length === 1) {
+        r = '0' + r
+      }
+      if (g.length === 1) {
+        g = '0' + g
+      }
+      if (r.length === 1) {
+        b = '0' + b
+      }
+      setHex('#' + r + g + b)
+    }
+  }
+  const handleHexChange = (e) => {
+    let value = e.target.value
+    let r, g, b
+
+    if (value.slice(0, 1) === '#' && value.length <= 7) {
+      if (value.length === 7) {
+        r = parseInt(value.slice(1, 3), 16)
+        g = parseInt(value.slice(3, 5), 16)
+        b = parseInt(value.slice(5, 7), 16)
+      } else {
+        r = -1
+        g = -1
+        b = -1
+      }
+      setHex(value)
+      setRed(r)
+      setGreen(g)
+      setBlue(b)
+    }
   }
 
-  rHandleChange(event) {
-    this.setState({
-      rInput: event.target.value,
-    })
-    this.rgbHandleChange()
-  }
-
-  gHandleChange(event) {
-    this.setState({
-      gInput: event.target.value,
-    })
-    this.rgbHandleChange()
-  }
-
-  bHandleChange(event) {
-    this.setState({
-      bInput: event.target.value,
-    })
-    this.rgbHandleChange()
-  }
-
-  rgbHandleChange() {
-    this.setState({
-      hexInput: `#${this.state.rInput.toString(16)}${this.state.gInput.toString(16)}${this.state.bInput.toString(16)}`
-    })
-  }
-
-  hexHandleChange(event) {
-    let r = parseInt(event.target.value.slice(1, 3), 16)
-    let g = parseInt(event.target.value.slice(3, 5), 16)
-    let b = parseInt(event.target.value.slice(5, 7), 16)
-
-    this.setState({
-      rInput: r,
-      gInput: g,
-      bInput: b,
-
-      rgbInput: ((event.target.value - 32) * 5 / 9).toFixed(2),
-    })
-  }
-
-
-  render() {
-    return (
-      <div className="card">
-        <div className="item">
-          R: <input onChange={this.rHandleChange} value={this.state.rInput}></input>
-          G: <input onChange={this.gHandleChange} value={this.state.gInput}></input>
-          B: <input onChange={this.bHandleChange} value={this.state.bInput}></input>
-        </div>
-        <div className="item">
-          F: <input onChange={this.hexHandleChange} value={this.state.hexInput}></input>
-        </div>
-      </div >
-    )
-  }
+  return (
+    <div className="card">
+      <div className="item">
+        Red: <input onChange={handleRedChange} value={red}></input>
+        Green: <input onChange={handleGreenChange} value={green}></input>
+        Blue: <input onChange={handleBlueChange} value={blue}></input>
+      </div>
+      <div className="item">
+        Hex: <input onChange={handleHexChange} value={hex}></input>
+      </div>
+    </div>
+  )
 }
 
 export default ColorCode
