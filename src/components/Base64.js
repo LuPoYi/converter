@@ -1,55 +1,41 @@
-import React, { Component } from 'react';
-class Base64 extends Component {
-  constructor() {
-    super()
-    this.state = {
-      stringInput: "",
-      base64Input: "",
+import React, { useState } from 'react'
 
-    }
-    this.stringHandleChange = this.stringHandleChange.bind(this)
-    this.base64HandleChange = this.base64HandleChange.bind(this)
-  }
+function Base64() {
+  const [text, setText] = useState('')
+  const [base64, setBase64] = useState('')
 
-  stringHandleChange(event) {
+  const handleTextChange = (e) => {
+    setText(e.target.value)
     let value
     try {
-      value = btoa(event.target.value)
+      value = btoa(e.target.value)
     } catch {
-      value = "ERROR"
+      value = 'ERROR'
     }
-    
-    this.setState({
-      stringInput: event.target.value,
-      base64Input: value
-    })
+    setBase64(value)
   }
-  base64HandleChange(event) {
+
+  const base64HandleChange = (e) => {
+    setBase64(e.target.value)
     let value
     try {
-      value = atob(event.target.value)
+      value = atob(e.target.value)
     } catch {
-      value = "ERROR"
+      value = 'ERROR'
     }
-    this.setState({
-      stringInput: value,
-      base64Input: event.target.value
-    })
+    setText(value)
   }
 
-
-  render() {
-    return (
-      <div className="card">
-        <div className="item">
-        string: <input onChange={this.stringHandleChange} value={this.state.stringInput}></input>
-        </div>
-        <div className="item">
-          Base64: <input onChange={this.base64HandleChange} value={this.state.base64Input}></input>
-        </div>
-      </div >
-    )
-  }
+  return (
+    <div className="card">
+      <div className="item">
+        string: <input onChange={handleTextChange} value={text}></input>
+      </div>
+      <div className="item">
+        Base64: <input onChange={base64HandleChange} value={base64}></input>
+      </div>
+    </div>
+  )
 }
 
 export default Base64
