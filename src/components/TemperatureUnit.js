@@ -1,43 +1,29 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react'
 
-class TemperatureUnit extends Component {
-  constructor() {
-    super()
-    this.state = {
-      celsiusInput: 1,
-      fahrenheitInput: 33.8,
-    }
-    this.celsiusHandleChange = this.celsiusHandleChange.bind(this)
-    this.fahrenheitHandleChange = this.fahrenheitHandleChange.bind(this)
+function TemperatureUnit() {
+  const [celsius, setCelsius] = useState(1)
+  const [fahrenheit, setFahrenheit] = useState(33.8)
+
+  const celsiusHandleChange = (e) => {
+    setCelsius(e.target.value)
+    setFahrenheit((e.target.value * (9 / 5) + 32).toFixed(2))
   }
 
-  celsiusHandleChange(event) {
-    this.setState({
-      celsiusInput: event.target.value,
-      fahrenheitInput: (event.target.value * (9 / 5) + 32).toFixed(2)
-    })
+  const fahrenheitHandleChange = (e) => {
+    setFahrenheit(e.target.value)
+    setCelsius((((e.target.value - 32) * 5) / 9).toFixed(2))
   }
 
-  fahrenheitHandleChange(event) {
-    this.setState({
-      celsiusInput: ((event.target.value - 32) * 5 / 9).toFixed(2),
-      fahrenheitInput: event.target.value
-    })
-  }
-
-
-  render() {
-    return (
-      <div className="card">
-        <div className="item">
-          C: <input onChange={this.celsiusHandleChange} value={this.state.celsiusInput}></input>
-        </div>
-        <div className="item">
-          F: <input onChange={this.fahrenheitHandleChange} value={this.state.fahrenheitInput}></input>
-        </div>
-      </div >
-    )
-  }
+  return (
+    <div className="card">
+      <div className="item">
+        C: <input onChange={celsiusHandleChange} value={celsius}></input>
+      </div>
+      <div className="item">
+        F: <input onChange={fahrenheitHandleChange} value={fahrenheit}></input>
+      </div>
+    </div>
+  )
 }
 
 export default TemperatureUnit
