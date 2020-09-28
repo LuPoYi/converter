@@ -1,5 +1,7 @@
 import React from 'react'
+import { Button } from '@material-ui/core'
 import './App.css'
+import Header from './containers/Header'
 import MeasurementUnit from './components/MeasurementUnit'
 import Timestamp from './components/Timestamp'
 import TemperatureUnit from './components/TemperatureUnit'
@@ -10,6 +12,7 @@ import CamelCase from './components/CamelCase'
 function App() {
   return (
     <div className="App">
+      <Header />
       <MeasurementUnit />
       <ColorCode />
       <Timestamp />

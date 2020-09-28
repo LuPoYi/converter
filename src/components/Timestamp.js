@@ -1,28 +1,42 @@
 import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+
+const useStyles = makeStyles({
+  root: {
+    width: '50%',
+  },
+})
 
 function Timestamp() {
+  const classes = useStyles()
+
   const [date, setDate] = useState(Date())
   const [timestamp, setTimestamp] = useState(Math.floor(Date.now() / 1000))
-
   const dateHandleChange = (e) => {
     setDate(e.target.value)
     setTimestamp(Date.parse(e.target.value) / 1000)
   }
-
   const timestampHandleChange = (e) => {
     setTimestamp(e.target.value)
-    setDate(Date(e.target.value * 1000))
+    setDate(Date(parseInt(e.target.value) * 1000))
   }
 
   return (
-    <div className="card">
-      <div className="item">
-        Date: <input onChange={dateHandleChange} value={date}></input>
-      </div>
-      <div className="item">
-        Timestamp: <input onChange={timestampHandleChange} value={timestamp}></input>
-      </div>
-    </div>
+    <Card className={classes.root}>
+      <CardContent>
+        <TextField label="Date" variant="outlined" onChange={dateHandleChange} value={date} />
+        <TextField
+          label="Timestamp"
+          variant="outlined"
+          onChange={timestampHandleChange}
+          value={timestamp}
+        />
+      </CardContent>
+    </Card>
   )
 }
 

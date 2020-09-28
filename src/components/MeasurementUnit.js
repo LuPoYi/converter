@@ -1,5 +1,17 @@
 import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+
+const useStyles = makeStyles({
+  root: {
+    width: '50%',
+  },
+})
+
 const MeasurementUnit = () => {
+  const classes = useStyles()
   const cmInchRatio = 0.3937
   const kgPoundRatio = 2.2046226218
 
@@ -29,20 +41,16 @@ const MeasurementUnit = () => {
   }
 
   return (
-    <div className="card">
-      <div className="item">
-        cm: <input onChange={cmHandleChange} value={cm}></input>
-      </div>
-      <div className="item">
-        inch: <input onChange={inchHandleChange} value={inch}></input>
-      </div>
-      <div className="item">
-        kg: <input onChange={kgHandleChange} value={kg}></input>
-      </div>
-      <div className="item">
-        pound: <input onChange={poundHandleChange} value={pound}></input>
-      </div>
-    </div>
+    <Card className={classes.root}>
+      <CardContent>
+        <TextField label="CM" variant="outlined" onChange={cmHandleChange} value={cm} />
+        <TextField label="inch" variant="outlined" onChange={inchHandleChange} value={inch} />
+      </CardContent>
+      <CardContent>
+        <TextField label="KG" variant="outlined" onChange={kgHandleChange} value={kg} />
+        <TextField label="inch" variant="outlined" onChange={poundHandleChange} value={pound} />
+      </CardContent>
+    </Card>
   )
 }
 
