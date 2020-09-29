@@ -25,6 +25,8 @@ function CamelCase() {
   const [kebabCase, setKebabCase] = useState('')
   const [titleCase, setTitleCase] = useState('')
   const [snakeCase, setSnakeCase] = useState('')
+  const [upperCase, setUpperCase] = useState('')
+  const [lowerCase, setLowerCase] = useState('')
 
   const handleTextChange = (e) => {
     setText(e.target.value)
@@ -32,6 +34,8 @@ function CamelCase() {
     setKebabCase(toKebabCase(e.target.value))
     setTitleCase(toTitleCase(e.target.value))
     setSnakeCase(toSnakeCase(e.target.value))
+    setUpperCase(e.target.value.toUpperCase())
+    setLowerCase(e.target.value.toLowerCase())
   }
 
   const handleCamelCaseChange = (e) => {
@@ -45,6 +49,12 @@ function CamelCase() {
   }
   const handleSnakeCaseChange = (e) => {
     setSnakeCase(e.target.value)
+  }
+  const handleUpperCaseChange = (e) => {
+    setUpperCase(e.target.value)
+  }
+  const handleLowerCaseChange = (e) => {
+    setLowerCase(e.target.value)
   }
 
   function toCamelCase(str) {
@@ -129,6 +139,20 @@ function CamelCase() {
           variant="outlined"
           onChange={handleSnakeCaseChange}
           value={snakeCase}
+          className={classes.textField}
+        />
+        <TextField
+          label="UPPERCASE"
+          variant="outlined"
+          onChange={handleUpperCaseChange}
+          value={upperCase}
+          className={classes.textField}
+        />
+        <TextField
+          label="lowercase"
+          variant="outlined"
+          onChange={handleLowerCaseChange}
+          value={lowerCase}
           className={classes.textField}
         />
       </CardContent>
