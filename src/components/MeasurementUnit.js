@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent'
 const useStyles = makeStyles({
   root: {
     width: '50%',
+    float: 'left',
   },
 })
 

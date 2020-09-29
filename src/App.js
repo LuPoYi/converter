@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
 import './App.css'
 import Header from './containers/Header'
 import MeasurementUnit from './components/MeasurementUnit'

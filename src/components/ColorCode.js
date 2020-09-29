@@ -1,6 +1,17 @@
 import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
 
+const useStyles = makeStyles({
+  root: {
+    width: '50%',
+    float: 'left',
+  },
+})
 const ColorCode = () => {
+  const classes = useStyles()
   const [red, setRed] = useState(0)
   const [green, setGreen] = useState(0)
   const [blue, setBlue] = useState(0)
@@ -100,16 +111,16 @@ const ColorCode = () => {
   }
 
   return (
-    <div className="card">
-      <div className="item">
-        Red: <input onChange={handleRedChange} value={red}></input>
-        Green: <input onChange={handleGreenChange} value={green}></input>
-        Blue: <input onChange={handleBlueChange} value={blue}></input>
-      </div>
-      <div className="item">
-        Hex: <input onChange={handleHexChange} value={hex}></input>
-      </div>
-    </div>
+    <Card className={classes.root}>
+      <CardContent>
+        <TextField label="Red" variant="outlined" onChange={handleRedChange} value={red} />
+        <TextField label="Green" variant="outlined" onChange={handleGreenChange} value={green} />
+        <TextField label="Blue" variant="outlined" onChange={handleBlueChange} value={blue} />
+      </CardContent>
+      <CardContent>
+        <TextField label="Hex" variant="outlined" onChange={handleHexChange} value={hex} />
+      </CardContent>
+    </Card>
   )
 }
 

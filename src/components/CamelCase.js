@@ -1,6 +1,25 @@
 import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+
+const useStyles = makeStyles({
+  root: {
+    width: '100%',
+    float: 'left',
+  },
+  textFieldMax: {
+    width: '100%',
+  },
+  textField: {
+    width: '50%',
+    float: 'left',
+  },
+})
 
 function CamelCase() {
+  const classes = useStyles()
   const [text, setText] = useState('')
   const [camelCase, setCamelCase] = useState('')
   const [kebabCase, setKebabCase] = useState('')
@@ -73,28 +92,47 @@ function CamelCase() {
   }
 
   return (
-    <div className="card">
-      <div className="item">
-        Text:
-        <input onChange={handleTextChange} value={text} placeholder="input here"></input>
-      </div>
-      <div className="item">
-        camelCase:
-        <input onChange={handleCamelCaseChange} value={camelCase} placeholder="inputHere"></input>
-      </div>
-      <div className="item">
-        kebab-case:
-        <input onChange={handleKebabCaseChange} value={kebabCase} placeholder="input-here"></input>
-      </div>
-      <div className="item">
-        Title Case:
-        <input onChange={handleTitleCaseChange} value={titleCase} placeholder="Input Here"></input>
-      </div>
-      <div className="item">
-        Snake_Case:
-        <input onChange={handleSnakeCaseChange} value={snakeCase} placeholder="Input_Here"></input>
-      </div>
-    </div>
+    <Card className={classes.root}>
+      <CardContent>
+        <TextField
+          label="Text"
+          variant="outlined"
+          onChange={handleTextChange}
+          value={text}
+          className={classes.textFieldMax}
+        />
+      </CardContent>
+      <CardContent>
+        <TextField
+          label="camelCase"
+          variant="outlined"
+          onChange={handleCamelCaseChange}
+          value={camelCase}
+          className={classes.textField}
+        />
+        <TextField
+          label="KebabCase"
+          variant="outlined"
+          onChange={handleKebabCaseChange}
+          value={kebabCase}
+          className={classes.textField}
+        />
+        <TextField
+          label="Title Case"
+          variant="outlined"
+          onChange={handleTitleCaseChange}
+          value={titleCase}
+          className={classes.textField}
+        />
+        <TextField
+          label="Snake_Case"
+          variant="outlined"
+          onChange={handleSnakeCaseChange}
+          value={snakeCase}
+          className={classes.textField}
+        />
+      </CardContent>
+    </Card>
   )
 }
 

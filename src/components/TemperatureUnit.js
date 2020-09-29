@@ -1,6 +1,18 @@
 import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+
+const useStyles = makeStyles({
+  root: {
+    width: '50%',
+    float: 'left',
+  },
+})
 
 function TemperatureUnit() {
+  const classes = useStyles()
   const [celsius, setCelsius] = useState(1)
   const [fahrenheit, setFahrenheit] = useState(33.8)
 
@@ -15,14 +27,22 @@ function TemperatureUnit() {
   }
 
   return (
-    <div className="card">
-      <div className="item">
-        C: <input onChange={celsiusHandleChange} value={celsius}></input>
-      </div>
-      <div className="item">
-        F: <input onChange={fahrenheitHandleChange} value={fahrenheit}></input>
-      </div>
-    </div>
+    <Card className={classes.root}>
+      <CardContent>
+        <TextField
+          label="Celsius"
+          variant="outlined"
+          onChange={celsiusHandleChange}
+          value={celsius}
+        />
+        <TextField
+          label="Fahrenheit"
+          variant="outlined"
+          onChange={fahrenheitHandleChange}
+          value={fahrenheit}
+        />
+      </CardContent>
+    </Card>
   )
 }
 
