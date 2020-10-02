@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles({
   root: {
@@ -28,6 +30,10 @@ function TemperatureUnit() {
 
   return (
     <Card className={classes.root}>
+      <CardContent>
+        <Typography variant={"h6"} gutterBottom>Temperature Unit</Typography>
+        <Divider className={classes.divider} light />
+      </CardContent>
       <CardContent>
         <TextField
           label="Celsius"
