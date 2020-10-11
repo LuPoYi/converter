@@ -3,8 +3,10 @@ import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
+import ColorLensIcon from '@material-ui/icons/ColorLens'
+import InputAdornment from '@material-ui/core/InputAdornment'
 
 const useStyles = makeStyles({
   root: {
@@ -115,7 +117,9 @@ const ColorCode = () => {
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography variant={"h6"} gutterBottom>RGB Hex</Typography>
+        <Typography variant={'h6'} gutterBottom>
+          RGB Hex
+        </Typography>
         <Divider className={classes.divider} light />
       </CardContent>
       <CardContent>
@@ -124,7 +128,19 @@ const ColorCode = () => {
         <TextField label="Blue" variant="outlined" onChange={handleBlueChange} value={blue} />
       </CardContent>
       <CardContent>
-        <TextField label="Hex" variant="outlined" onChange={handleHexChange} value={hex} />
+        <TextField
+          label="Hex"
+          variant="outlined"
+          onChange={handleHexChange}
+          value={hex}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <ColorLensIcon style={{ color: hex }} />
+              </InputAdornment>
+            ),
+          }}
+        />
       </CardContent>
     </Card>
   )
