@@ -1,19 +1,16 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
+import styles from './Card/dashboardStyle.js'
 import Divider from '@material-ui/core/Divider'
 import ColorLensIcon from '@material-ui/icons/ColorLens'
 import InputAdornment from '@material-ui/core/InputAdornment'
+import Card from './Card/Card.js'
+import CardHeader from './Card/CardHeader.js'
+import CardBody from './Card/CardBody.js'
 
-const useStyles = makeStyles({
-  root: {
-    width: '50%',
-    float: 'left',
-  },
-})
+const useStyles = makeStyles(styles)
+
 const ColorCode = () => {
   const classes = useStyles()
   const [red, setRed] = useState(0)
@@ -115,19 +112,17 @@ const ColorCode = () => {
   }
 
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography variant={'h6'} gutterBottom>
-          RGB Hex
-        </Typography>
-        <Divider className={classes.divider} light />
-      </CardContent>
-      <CardContent>
+    <Card>
+      <CardHeader color="primary">
+        <h4 className={classes.cardTitleWhite}>RGB Hex</h4>
+      </CardHeader>
+
+      <CardBody>
         <TextField label="Red" variant="outlined" onChange={handleRedChange} value={red} />
         <TextField label="Green" variant="outlined" onChange={handleGreenChange} value={green} />
         <TextField label="Blue" variant="outlined" onChange={handleBlueChange} value={blue} />
-      </CardContent>
-      <CardContent>
+        <Divider light />
+
         <TextField
           label="Hex"
           variant="outlined"
@@ -141,7 +136,7 @@ const ColorCode = () => {
             ),
           }}
         />
-      </CardContent>
+      </CardBody>
     </Card>
   )
 }
