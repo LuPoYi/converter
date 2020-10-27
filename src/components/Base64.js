@@ -1,17 +1,12 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
+import styles from './Card/dashboardStyle.js'
+import Card from './Card/Card.js'
+import CardHeader from './Card/CardHeader.js'
+import CardBody from './Card/CardBody.js'
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-    float: 'left',
-  },
-})
+const useStyles = makeStyles(styles)
 
 function Base64() {
   const classes = useStyles()
@@ -42,15 +37,15 @@ function Base64() {
   }
 
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography variant={"h6"} gutterBottom>Base64</Typography>
-        <Divider className={classes.divider} light />
-      </CardContent>
-      <CardContent>
+    <Card>
+      <CardHeader color="rose">
+        <h4 className={classes.cardTitleWhite}>Base64</h4>
+      </CardHeader>
+
+      <CardBody>
         <TextField label="Text" variant="outlined" onChange={handleTextChange} value={text} />
         <TextField label="Base64" variant="outlined" onChange={base64HandleChange} value={base64} />
-      </CardContent>
+      </CardBody>
     </Card>
   )
 }

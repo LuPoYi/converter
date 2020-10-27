@@ -26,11 +26,18 @@ function App() {
         <GridItem xs={12} sm={6} md={6}>
           <ColorCode />
         </GridItem>
-
-        <Timestamp />
-        <TemperatureUnit />
-        <Base64 />
-        <CamelCase />
+        <GridItem xs={12} sm={6} md={6}>
+          <Timestamp />
+        </GridItem>
+        <GridItem xs={12} sm={6} md={6}>
+          <TemperatureUnit />
+        </GridItem>
+        <GridItem xs={12} sm={12} md={12}>
+          <Base64 />
+        </GridItem>
+        <GridItem xs={12} sm={12} md={12}>
+          <CamelCase />
+        </GridItem>
       </GridContainer>
     </div>
   )

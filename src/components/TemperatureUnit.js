@@ -1,17 +1,12 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
+import styles from './Card/dashboardStyle.js'
+import Card from './Card/Card.js'
+import CardHeader from './Card/CardHeader.js'
+import CardBody from './Card/CardBody.js'
 
-const useStyles = makeStyles({
-  root: {
-    width: '50%',
-    float: 'left',
-  },
-})
+const useStyles = makeStyles(styles)
 
 function TemperatureUnit() {
   const classes = useStyles()
@@ -29,12 +24,12 @@ function TemperatureUnit() {
   }
 
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography variant={"h6"} gutterBottom>Temperature Unit</Typography>
-        <Divider className={classes.divider} light />
-      </CardContent>
-      <CardContent>
+    <Card>
+      <CardHeader color="info">
+        <h4 className={classes.cardTitleWhite}>Temperature</h4>
+      </CardHeader>
+
+      <CardBody>
         <TextField
           label="Celsius"
           variant="outlined"
@@ -47,7 +42,7 @@ function TemperatureUnit() {
           onChange={fahrenheitHandleChange}
           value={fahrenheit}
         />
-      </CardContent>
+      </CardBody>
     </Card>
   )
 }

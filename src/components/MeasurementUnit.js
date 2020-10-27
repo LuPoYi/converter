@@ -48,7 +48,6 @@ const MeasurementUnit = () => {
         <TextField label="CM" variant="outlined" onChange={cmHandleChange} value={cm} />
         <TextField label="inch" variant="outlined" onChange={inchHandleChange} value={inch} />
         <Divider variant="middle" />
-
         <TextField label="KG" variant="outlined" onChange={kgHandleChange} value={kg} />
         <TextField label="inch" variant="outlined" onChange={poundHandleChange} value={pound} />
       </CardBody>

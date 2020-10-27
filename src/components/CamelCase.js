@@ -1,24 +1,13 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
+import Divider from '@material-ui/core/Divider'
+import styles from './Card/dashboardStyle.js'
+import Card from './Card/Card.js'
+import CardHeader from './Card/CardHeader.js'
+import CardBody from './Card/CardBody.js'
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-    float: 'left',
-  },
-  textFieldMax: {
-    width: '100%',
-  },
-  textField: {
-    width: '50%',
-    float: 'left',
-  },
-})
+const useStyles = makeStyles(styles)
 
 function CamelCase() {
   const classes = useStyles()
@@ -104,12 +93,12 @@ function CamelCase() {
   }
 
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography variant={"h6"} gutterBottom>Text to camelBase</Typography>
-        <Divider className={classes.divider} light />
-      </CardContent>
-      <CardContent>
+    <Card>
+      <CardHeader color="danger">
+        <h4 className={classes.cardTitleWhite}>Text to camelBase</h4>
+      </CardHeader>
+
+      <CardBody>
         <TextField
           label="Text"
           variant="outlined"
@@ -117,8 +106,8 @@ function CamelCase() {
           value={text}
           className={classes.textFieldMax}
         />
-      </CardContent>
-      <CardContent>
+      </CardBody>
+      <CardBody>
         <TextField
           label="camelCase"
           variant="outlined"
@@ -161,7 +150,7 @@ function CamelCase() {
           value={lowerCase}
           className={classes.textField}
         />
-      </CardContent>
+      </CardBody>
     </Card>
   )
 }
