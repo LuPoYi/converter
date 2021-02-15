@@ -7,6 +7,7 @@ import TemperatureUnit from './components/TemperatureUnit'
 import Base64 from './components/Base64'
 import ColorCode from './components/ColorCode'
 import CamelCase from './components/CamelCase'
+import CompoundInterest from './components/CompoundInterest'
 
 import GridItem from './components/Grid/GridItem.js'
 import GridContainer from './components/Grid/GridContainer.js'
@@ -20,6 +21,9 @@ function App() {
     <div className="App">
       <Header />
       <GridContainer>
+        <GridItem xs={12} sm={6} md={6}>
+          <CompoundInterest />
+        </GridItem>
         <GridItem xs={12} sm={6} md={6}>
           <MeasurementUnit />
         </GridItem>
