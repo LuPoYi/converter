@@ -10,3 +10,8 @@
 ## How to start
 
 `yarn start`
+
+
+## TODO
+
+* Qrcode to string
