@@ -14,4 +14,4 @@
 
 ## TODO
 
-* Qrcode to string
+* string to QRCode
